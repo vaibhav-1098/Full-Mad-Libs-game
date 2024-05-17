@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies</title>
+  <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="movies.css">
+</head>
+<style>
+  .highlight{background-color: #ffff0091; padding: 0 5px;}
+</style>
+<body style="background-color: #fa807280;">
+
+<div style="background-color: salmon; padding: 20px;">
+<h1 style="text-align: center; color: white;">Going to The Movies</h1>
+</div>
+
+<br>
+
+<form id="madLibsForm" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+
+  <input type="text" id="Person1" placeholder="Enter any Person's Name:">
+  <input type="text" id="Movie" placeholder="Enter any Movie:">
+  <input type="text" id="Place" placeholder="Enter any Location:">
+  <input type="text" id="FoodItem" placeholder="Enter a Food Item:">
+  <input type="text" id="Verb1" placeholder="Enter any verb (...ing):">
+  <input type="text" id="Adjective1" placeholder="Enter Any Adjective:">
+  <input type="text" id="Verb2" placeholder="Enter another verb (...ing):">
+  <input type="text" id="BodyPart" placeholder="Enter a Body Part:">
+  <input type="text" id="Clothing" placeholder="Enter any clothing:">
+  <input type="text" id="Beverage" placeholder="Enter any Beverage:">
+  <input type="text" id="Number" placeholder="Enter any Number:">
+  <input type="text" id="Adjective2" placeholder="Enter another Adjective:">
+  <input type="text" id="Actor" placeholder="Enter Favourite Actor:">
+  <input type="text" id="PluralNoun" placeholder="Enter a plural noun:">
+  
+  <div style="display: flex; justify-content: center;" class="mb-5 mt-3">
+    <input type="reset" value="Clear" class="end" style="background-color: #dc3545; color: white;">
+    <div style="width: 2rem;"></div>
+    <input type="submit" value="Let's Go" class="end" style="background-color: #009e7c; color: white;">
+  </div>
+</form>
+
+
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="height: 100%;">
+  <button type="button" class="btn-close ps-5 pt-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <h2 class="text-center" style="color: salmon;">Going to The Movies</h5>
+  <div class="offcanvas-body small mx-3">
+    <p id="storyOutput" style="font-size: 16px; font-weight: 300;"></p>
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <img width="200px" src="cinema.png">
+      <button type="button" class="btn btn-success" style="background-color: #009e7c;">
+        <a href="/index.html" style="color: white; text-decoration: none;">
+          Play Again <i class="fa-solid fa-arrow-rotate-right"></i>
+        </a>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  document.getElementById("madLibsForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      generateStory();
+  });
+
+  function generateStory() {
+      const Person1 = document.getElementById("Person1").value.toUpperCase();
+      const Movie = document.getElementById("Movie").value.toUpperCase();
+      const Place = document.getElementById("Place").value.toUpperCase();
+      const FoodItem = document.getElementById("FoodItem").value.toUpperCase();
+      const Verb1 = document.getElementById("Verb1").value.toUpperCase();
+      const Adjective1 = document.getElementById("Adjective1").value.toUpperCase();
+      const Verb2 = document.getElementById("Verb2").value.toUpperCase();
+      const BodyPart = document.getElementById("BodyPart").value.toUpperCase();
+      const Clothing = document.getElementById("Clothing").value.toUpperCase();
+      const Beverage = document.getElementById("Beverage").value.toUpperCase();
+      const Number = document.getElementById("Number").value.toUpperCase();
+      const Adjective2 = document.getElementById("Adjective2").value.toUpperCase();
+      const Actor = document.getElementById("Actor").value.toUpperCase();
+      const PluralNoun = document.getElementById("PluralNoun").value.toUpperCase();
+
+      const story = `
+          I went to the movies yesterday with <span class="highlight">${Person1}</span>.
+          We saw <span class="highlight">${Movie}</span> near <span class="highlight">${Place}</span>.
+          In the Cinema Hall, we stole some <span class="highlight">${FoodItem}</span>.
+          The person next to me was constantly <span class="highlight">${Verb1}</span>. This turned me really <span class="highlight">${Adjective1}</span>.
+          The main character was never <span class="highlight">${Verb2}</span> due to his artificial <span class="highlight">${BodyPart}</span>.
+          My <span class="highlight">${Clothing}</span> got wet due to <span class="highlight">${Beverage}</span>.
+          No worries! I've got <span class="highlight">${Number}</span> more hidden in my kitchen.
+          The movie made me feel <span class="highlight">${Adjective2}</span> because <span class="highlight">${Actor}</span> was not selected for the main role.
+          When we were trying to exit, the cops arrested both of us for repeatedly throwing <span class="highlight">${PluralNoun}</span> at other customers.
+      `;
+
+      document.getElementById("storyOutput").innerHTML = story;
+
+      const offcanvas = new bootstrap.Offcanvas(document.getElementById("offcanvasBottom"));
+      offcanvas.show();
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
